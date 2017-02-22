@@ -48,22 +48,18 @@ class WaveFrontModel:
         '''
         event = {}
         event['name'] = 'Threat Stack alert: {}'.format(alert.get('rule').get('original_rule').get('name'))
-        event['startTime'] = int(alert.get('created_at') / 1000)
+        event['startTime'] = alert.get('created_at')
+        event['endTime'] = alert.get('expires_at')
+        event['hosts'] = [hostname]
+        event['tags'] = [WAVEFRONT_TAG_NAME]
         event['annotations'] = {}
         event['annotations']['severity'] = THREATSTACK_TO_WAVEFRONT_ALERTS[alert.get('severity')]
         event['annotations']['type'] = WAVEFRONT_ALERT_TYPE
-        event['annotations']['details'] = '{}: {}'.format(hostname, alert.get('title'))
+        event['annotations']['details'] = alert.get('title')
 
         # Create the event
         event_api = wavefront_api_client.EventApi(self.wavefront_client)
         resp = event_api.create_event(body=event)
 
-        # add tag
-        event_id = resp.response.id
-        event_api.set_event_tags(id=event_id, body=[WAVEFRONT_TAG_NAME])
-
-        # get event to return
-        event = event_api.get_event(event_id)
-
-        return event.to_dict()
+        return resp.to_dict()
 
