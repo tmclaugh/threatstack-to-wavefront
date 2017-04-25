@@ -87,7 +87,7 @@ $ sudo /hab/bin/hab tmclaugh/threatstack-to-wavefront
 ```
 
 ## API
-### POST https://_{host}_/api/v1/wavefront/event
+### POST https://_{host}_/threatstack-to-wavefront/api/v1/wavefront/event
 Post a JSON doc from Threat Stack and record an event in Wavefront.  JSON doc will be in the following format.  __NOTE__: A webhook may contain multiple alerts but this service will store each one individually.
 ```
 {
