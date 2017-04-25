@@ -1,7 +1,6 @@
 '''
 Assemble our service.
 '''
-import config
 from flask_lambda import FlaskLambda
 import logging
 
