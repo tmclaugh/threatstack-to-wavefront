@@ -6,6 +6,7 @@ from flask import Blueprint, jsonify, request
 import logging
 import app.models.wavefront as wavefront_model
 import app.models.threatstack as threatstack_model
+from app.sns import check_aws_sns
 
 _logger = logging.getLogger(__name__)
 
@@ -35,6 +36,7 @@ def is_available():
     return jsonify(success=success, wavefront=wavefront_info, threatstack=ts_info), status_code
 
 @wavefront.route('/event', methods=['POST'])
+@check_aws_sns
 def put_alert():
     '''
     Archive Threat Stack alerts to wavefront.
@@ -44,7 +46,8 @@ def put_alert():
                                       request.values))
 
     wavefront_response_list = []
-    webhook_data = request.get_json()
+    # SNS doesn't set Content-Type to application/json
+    webhook_data = request.get_json(force=True)
     for alert in webhook_data.get('alerts'):
         ts = threatstack_model.ThreatStackModel()
         alert_full = ts.get_alert_by_id(alert.get('id'))
