@@ -17,6 +17,7 @@ def is_available():
     '''
     Test that Threat Stack and wavefront bucket are reachable.
     '''
+    _logger.info('{}: {}'.format(request.method, request.path))
     wf = wavefront_model.WaveFrontModel()
     wavefront_status = wf.is_available()
     wavefront_info = {'success': wavefront_status}
@@ -38,6 +39,10 @@ def put_alert():
     '''
     Archive Threat Stack alerts to wavefront.
     '''
+    _logger.info('{}: {} - {}'.format(request.method,
+                                      request.path,
+                                      request.values))
+
     wavefront_response_list = []
     webhook_data = request.get_json()
     for alert in webhook_data.get('alerts'):
