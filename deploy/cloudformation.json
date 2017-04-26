@@ -313,7 +313,7 @@
     "AppEndPoint": {
       "Type": "String",
       "Description": "Path to Api endpoint",
-      "Default": "/api/v1/wavefront/alert"
+      "Default": "/api/v1/wavefront/event"
     },
     "DeploymentStage": {
       "Type": "String",
