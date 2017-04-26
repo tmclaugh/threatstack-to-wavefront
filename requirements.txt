@@ -4,4 +4,4 @@ flask-lambda
 gevent
 gunicorn
 requests
-wavefront_client
+wavefront-api-client
