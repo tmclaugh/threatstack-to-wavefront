@@ -24,7 +24,7 @@ class WaveFrontModel:
         self.wavefront_client = wavefront_api_client.ApiClient(
             host=WAVEFRONT_BASE_URL,
             header_name='Authorization',
-            header_value=WAVEFRONT_API_TOKEN
+            header_value='Bearer ' + WAVEFRONT_API_TOKEN
         )
 
     def is_available(self):
