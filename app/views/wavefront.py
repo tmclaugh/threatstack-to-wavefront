@@ -43,7 +43,7 @@ def put_alert():
     '''
     _logger.info('{}: {} - {}'.format(request.method,
                                       request.path,
-                                      request.values))
+                                      request.data))
 
     wavefront_response_list = []
     # SNS doesn't set Content-Type to application/json
