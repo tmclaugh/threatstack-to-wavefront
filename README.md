@@ -1,19 +1,16 @@
-# threatstack-to-wavefront
+# threatstack-to-wavefront [![Build Status](https://travis-ci.org/threatstack/threatstack-to-wavefront.svg?branch=master)](https://travis-ci.org/threatstack/threatstack-to-wavefront)
+
 Takes a Threat Stack web hook request and archives the alert to Wavefront.
 
 **NOTE: This code is provided as an example and without support for creating services that use Threat Stack webhooks to perform actions within an environment.**
 
 ## Deployment
-Before deploying be sure that you've deployed and setup the [threatstack-to-aws-sns](https://github.com/threatstack/threatstack-to-aws-sns) service.
-
 This service can be deployed to AWS running on Lambda behind AWS API gateway by clicking "Launch Stack".
 [![Launch CloudFormation  Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=threatstack-to-wavefront&templateURL=https://s3.amazonaws.com/ts-demo-lamba-deploys/threatstack-to-wavefront.json)
 
 You will need the following information:
 * Threat Stack API key
 * Wavefront API Token
-
-Once the CloudFromation stack has been deployed the AWS API Gateway endpoint will be subscribed to your Threat Stack integrations AWS SNS topic.  Alerts sent from the Threat Stack AWS SNS topic will be forwarded through this service to Wavefront. 
 
 ## API
 ### POST https://[host]/threatstack-to-wavefront/api/v1/wavefront/event
