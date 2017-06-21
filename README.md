@@ -6,7 +6,7 @@ Takes a Threat Stack web hook request and archives the alert to Wavefront.
 
 ## Deployment
 This service can be deployed to AWS running on Lambda behind AWS API gateway by clicking "Launch Stack".
-[![Launch CloudFormation  Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=threatstack-to-wavefront&templateURL=https://s3.amazonaws.com/ts-demo-lamba-deploys/threatstack-to-wavefront.json)
+[![Launch CloudFormation  Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=threatstack-to-wavefront&templateURL=https://s3.amazonaws.com/ts-demo-lambda-deploys/threatstack-to-wavefront.json)
 
 You will need the following information:
 * Threat Stack API key
