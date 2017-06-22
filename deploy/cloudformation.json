@@ -253,6 +253,23 @@
       },
       "Condition": ""
     },
+    "LambdaInvokeUpdater": {
+      "Type": "Custom::LambdaUpdaterInvoke",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::ImportValue": {
+            "Fn::Sub": "${SvcIntegrationsCFStack}-UpdaterLambdaArn"
+          }
+        },
+        "FunctionName": {
+          "Ref": "AppName"
+        },
+        "FunctionZipFileUrl": {
+          "Fn::Sub": "https://s3.amazonaws.com/straycat-dhs-org-straycat-lambda-deploys/${AppName}.zip"
+        },
+        "TravisBuildNumber": "%%TRAVIS_BUILD_NUMBER%%"
+      }
+    },
     "SnsSubscription": {
       "Type": "AWS::SNS::Subscription",
       "Properties": {
@@ -347,6 +364,16 @@
     "WavefrontApiToken": {
       "Type": "String",
       "Description": "Wavefront API token",
+    }
+  },
+  "Outputs": {
+    "LambdaCodeSha256": {
+      "Description": "Lambda code SHA256.",
+      "Value": "%%SHA256%%"
+    },
+    "TravisBuildNumber": {
+      "Description": "Travis build number.",
+      "Value": "%%TRAVIS_BUILD_NUMBER%%"
     }
   },
   "Metadata": {
